@@ -16,7 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\SetCurrentAgency::class,
         ]);
 
-
+        $middleware->alias([
+            'portal.access' => \App\Http\Middleware\PortalAccess::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
