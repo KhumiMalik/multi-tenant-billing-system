@@ -18,9 +18,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name','email','password','role','agency_id'
     ];
 
     /**
@@ -45,4 +43,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function agency() { return $this->belongsTo(Agency::class); }
+
+    public function isAgencyAdmin() { return $this->role === 'agency_admin'; }
+    public function isBillingAdmin() { return $this->role === 'billing_admin'; }
+    public function isAgent() { return $this->role === 'agent'; }
 }
